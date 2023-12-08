@@ -28,4 +28,4 @@ jobs:
             - name: deleting
               run: |
                     cd terraform
-                    terraform destroy --auto-aprove
+                    terraform destroy -auto-aprove

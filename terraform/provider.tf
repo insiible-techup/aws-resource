@@ -1,10 +1,10 @@
 terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      # version = "5.30.0"
-    }
-  }
+  # required_providers {
+  #   aws = {
+  #     source = "hashicorp/aws"
+  #     # version = "5.30.0"
+  #   }
+  # }
   backend "s3" {
     bucket = "backend-bk"
     key    = "backend-bk/bsk-stfile"

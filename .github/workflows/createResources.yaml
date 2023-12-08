@@ -1,0 +1,52 @@
+name: Creating resources
+
+on: push
+
+
+jobs:
+    deploy:
+      name: test-access
+      runs-on: ubuntu-latest
+      # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+      permissions:
+        id-token: write
+        contents: read
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::746196583728:role/test-action
+          aws-region: us-east-1
+
+
+      - name: testing
+        run: aws s3 ls
+# jobs:
+#     createResources:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Cloning the repo
+#               uses: actions/checkout@v4
+
+#             # - name: Configure AWS Credentials Action For GitHub Actions
+#             #   uses: aws-actions/configure-aws-credentials@v2
+#             #   with:
+#             #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+#             #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#             #     aws-region: us-east-1
+
+
+#             - uses: kciter/terraform-apply-for-aws-action@v3
+#               with:
+#                 access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+#                 secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#                 region: "us-east-1"
+#                 variables: ""
+#                 path: ./terraform
+
+#             - name: deleting
+#               run: |
+#                     cd terraform
+#                     terraform destroy -auto-aprove

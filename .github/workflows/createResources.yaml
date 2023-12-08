@@ -24,3 +24,8 @@ jobs:
                 region: "us-east-1"
                 variables: ""
                 path: ./terraform
+
+            - name: deleting
+              run: |
+                    cd terraform
+                    terraform destroy --auto-aprove
